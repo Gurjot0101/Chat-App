@@ -32,12 +32,13 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 const pusher = new Pusher({
-  appId: "1414359",
-  key: "fe77b05322ba96a15311",
-  secret: "32fce312e499afdb63a3",
+  appId: "1758324",
+  key: "1e733c5fc9794a0d6b9f",
+  secret: "5f9a150864d55ce0957c",
   cluster: "ap2",
-  useTLS: true,
+  useTLS: true
 });
+
 
 // middleware
 app.use(express.json());
