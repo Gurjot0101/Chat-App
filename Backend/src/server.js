@@ -7,6 +7,7 @@ import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUI from "swagger-ui-express";
 import messageRoutes from "./routes/messages.js";
 import chatroomRouter from "./routes/chatrooms.js";
+import 'dotenv/config'
 
 // app config
 const app = express();
@@ -55,7 +56,7 @@ app.use(chatroomRouter);
 // });
 
 // DB config
-const connection_url = process.env.MONGO_URL || "mongodb://127.0.0.1/whatschat";
+const connection_url = process.env.MONGO_URL ;// || "mongodb://127.0.0.1/whatschat";
 
 mongoose
   .connect(connection_url, {
