@@ -22,7 +22,7 @@ const swaggerOptions = {
       },
       servers: [
         "http://localhost:4000",
-        "https://whatschat-mern.herokuapp.com/api-doc",
+        "https://chatcord-bfbi.onrender.com/api-doc",
       ],
       version: "1.0.0",
     },
