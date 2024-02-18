@@ -1,0 +1,42 @@
+.app {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: #dadbd3;
+}
+
+.app_body {
+    display: flex;
+    border-radius: 30px;
+    background-color: #ffffff;
+    margin-top: 0px;
+    height: 90vh;
+    width: 80vw;
+    box-shadow: -1px 7px 20px -6px rgba(0, 77, 59, 0.75);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #00c4a3;
+    border-radius: 100px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #007366;
+}
