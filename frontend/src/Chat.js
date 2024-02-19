@@ -1,13 +1,4 @@
-import { Avatar, IconButton } from "@material-ui/core";
-import {
-  AttachFile,
-  InsertEmoticon,
-  Mic,
-  SearchOutlined,
-  ExitToApp,
-  Close,
-  Send,
-} from "@material-ui/icons";
+
 //import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import React, { useEffect, useState, useRef } from "react";
 import "./Chat.css";
@@ -68,7 +59,7 @@ function Chat({ messages }) {
   return (
     <div className="chat">
       <div className="chat__header">
-        <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
+        Avatar
 
         <div className="chat__headerInfo">
           <h3>{selectedChatroom?.name}</h3>
@@ -76,15 +67,11 @@ function Chat({ messages }) {
         </div>
 
         <div className="chat__headerRight">
-          <IconButton>
-            <SearchOutlined />
-          </IconButton>
-          <IconButton>
-            <AttachFile />
-          </IconButton>
-          <IconButton onClick={() => logout()}>
-            <ExitToApp />
-          </IconButton>
+          search
+          attacth
+          <span onClick={() => logout()}>
+            exit
+          </span>
         </div>
       </div>
 
@@ -107,13 +94,13 @@ function Chat({ messages }) {
       {isShowEmojiPicker && <Picker onEmojiClick={onEmojiClick} />}
       <div className="chat__footer">
         {isShowEmojiPicker ? (
-          <IconButton onClick={toggleEmojiPicker}>
-            <Close />
-          </IconButton>
+          <span onClick={toggleEmojiPicker}>
+            emoji
+          </span>
         ) : (
-          <IconButton onClick={toggleEmojiPicker}>
-            <InsertEmoticon />
-          </IconButton>
+          <span onClick={toggleEmojiPicker}>
+            insert emote
+          </span>
         )}
         <form>
           <input
@@ -126,10 +113,10 @@ function Chat({ messages }) {
             Send a message
           </button>
         </form>
-        <Mic />
-        <IconButton onClick={sendMessage}>
-          <Send />
-        </IconButton>
+        mic
+        <span onClick={sendMessage}>
+          send
+        </span>
       </div>
     </div>
   );

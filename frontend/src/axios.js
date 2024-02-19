@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://chatcord-bfbi.onrender.com",
+  baseURL: "https://chat-app-r25h.onrender.com",
 });
 
 export default instance;

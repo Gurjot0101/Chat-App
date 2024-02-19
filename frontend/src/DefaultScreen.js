@@ -11,7 +11,7 @@ function DefaultScreen() {
       />
       <div className="defaultScreen__text">
         <div className="defaultScreen__heading">
-          <div className="defaultScreen__heading__title">WhatsChat</div>
+          <div className="defaultScreen__heading__title">ChatCord</div>
           <div className="defaultScreen__heading__text">New</div>
         </div>
         <div className="defaultScreen__body">

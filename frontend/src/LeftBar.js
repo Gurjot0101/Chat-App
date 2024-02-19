@@ -1,8 +1,9 @@
 import React from "react";
 import "./LeftBar.css";
-import { Avatar } from "@material-ui/core";
-import SettingsIcon from '@material-ui/icons/Settings';
 import { useEffect, useState } from "react";
+import { auth } from "./firebase";
+import SettingsIcon from '@mui/icons-material/Settings';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 function Leftbar(){
@@ -15,8 +16,11 @@ function Leftbar(){
 
     return(
         <div className="Bar-main">
-            <div className="Dp"><Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} /></div>
-            <div className="Setting"><SettingsIcon /></div>
+          <div className="User">
+              <div className="UserDp"><AccountCircleIcon/> </div>
+              <div className="UserName">{auth.currentUser.displayName}</div>
+          </div> 
+          <div className="Setting"><SettingsIcon /></div>
         </div>
     )
 }

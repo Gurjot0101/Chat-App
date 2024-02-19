@@ -18,8 +18,13 @@
     color: #00c4a3;
 }
 
-.Dp,
+.UserDp,.UserName{
+    text-align: center;
+    color: #00c4a3;
+}
+
+.UserDp:hover,
 .Setting:hover {
     cursor: pointer;
-    transform: scale(1.3);
+    transform: scale(1.5);
 }

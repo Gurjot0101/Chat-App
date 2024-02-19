@@ -1,9 +1,10 @@
-import { Avatar } from "@material-ui/core";
+
 import React, { useEffect, useState } from "react";
 import "./SidebarChat.css";
 import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
 import axios from "./axios";
+
 
 function SidebarChat({ chatroom, addNewChat }) {
   const [seed, setSeed] = useState("");
@@ -43,7 +44,7 @@ function SidebarChat({ chatroom, addNewChat }) {
     >
       <div className="sidebarChat__head">
         <div>
-          <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
+          avatar:
         </div>
         <div className="sidebarChat__info">
           <h2>{chatroom?.name.toUpperCase()}</h2>
