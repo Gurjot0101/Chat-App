@@ -13,12 +13,12 @@ function Leftbar(){
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));
   }, []);
-
+  //<div className="UserName">{auth.currentUser.displayName}</div>
     return(
         <div className="Bar-main">
           <div className="User">
               <div className="UserDp"><AccountCircleIcon/> </div>
-              <div className="UserName">{auth.currentUser.displayName}</div>
+             
           </div> 
           <div className="Setting"><SettingsIcon /></div>
         </div>
