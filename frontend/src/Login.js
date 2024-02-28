@@ -28,7 +28,7 @@ function Login() {
           <img src="https://img.icons8.com/dusk/344/weixing.png" alt="" />
         </a>
         <div className="login__text">
-          <h1>WhatsChat</h1>
+          <h1>ChatCord</h1>
         </div>
         <div className="login-btn" type="submit" onClick={signIn}>
           Sign In With

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
 import './popup.css';
 import AddIcon from '@mui/icons-material/Add';
-import axios from 'axios';
+import instance from '../axios';
 
 function PopB(){
     const [roomName, setRoomName] = useState('');
@@ -10,7 +10,7 @@ function PopB(){
     const createChat = async (name) => {
         const roomName = name;
         if (roomName) {
-          await axios.post("/api/v1/chatrooms/new", {
+          await instance.post("/api/v1/chatrooms/new", {
             name: roomName,
           });
         }

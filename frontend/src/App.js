@@ -5,7 +5,7 @@ import Chat from "./Chat/Chat";
 import Sidebar from "./Sidebar";
 import Leftbar from "./LeftBar";
 import Pusher from "pusher-js";
-import axios from "./axios";
+import instance from "./axios";
 import Login from "./Login";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
@@ -17,6 +17,7 @@ function App() {
   const [chatrooms, setChatrooms] = useState([]);
   const [{ user, selectedChatroom }, dispatch] = useStateValue();
   const [login, setLogin] = useState(true);
+  
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       let isMounted = true;
@@ -37,10 +38,10 @@ function App() {
   }, [user, dispatch, setLogin]);
 
   useEffect(() => {
-    axios.get("/api/v1/messages/sync").then((response) => {
+    instance.get("/api/v1/messages/sync").then((response) => {
       setMessages(response.data);
     });
-    axios.get("/api/v1/chatrooms/sync").then((response) => {
+    instance.get("/api/v1/chatrooms/sync").then((response) => {
       setChatrooms(response.data);
     });
   }, []);

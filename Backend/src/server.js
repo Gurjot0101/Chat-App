@@ -3,8 +3,6 @@ import express from "express";
 import mongoose from "mongoose";
 import Pusher from "pusher";
 import cors from "cors";
-import swaggerJsDoc from "swagger-jsdoc";
-import swaggerUI from "swagger-ui-express";
 import messageRoutes from "./routes/messages.js";
 import chatroomRouter from "./routes/chatrooms.js";
 import 'dotenv/config'
@@ -12,25 +10,6 @@ import 'dotenv/config'
 // app config
 const app = express();
 const port = process.env.PORT || 9000;
-
-const swaggerOptions = {
-  swaggerDefinition: {
-    info: {
-      title: "ChatRoom API",
-      description: "ChatRoom Endpoints",
-      contact: {
-        name: "Vivek",
-      },
-      servers: [
-        "http://localhost:4000",
-        "https://chatcord-bfbi.onrender.com/api-doc",
-      ],
-      version: "1.0.0",
-    },
-  },
-  apis: ["./src/routes/*.js"],
-};
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 const pusher = new Pusher({
   appId: "1758324",
@@ -46,9 +25,9 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use(messageRoutes);
 app.use(chatroomRouter);
+
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origins", "*");
 //   res.setHeader("Access-Control-Allow-Headers", "*");
@@ -56,7 +35,7 @@ app.use(chatroomRouter);
 // });
 
 // DB config
-const connection_url = process.env.MONGO_URL ;// || "mongodb://127.0.0.1/whatschat";
+const connection_url = process.env.MONGO_URL;
 
 mongoose
   .connect(connection_url, {

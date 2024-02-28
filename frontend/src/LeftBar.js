@@ -8,12 +8,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Leftbar(){
 
-    const [seed, setSeed] = useState("");
-
-  useEffect(() => {
-    setSeed(Math.floor(Math.random() * 5000));
-  }, []);
-  //<div className="UserName">{auth.currentUser.displayName}</div>
+    // <div className="UserName">{auth.currentUser.displayName}</div>
+  
     return(
         <div className="Bar-main">
           <div className="User">

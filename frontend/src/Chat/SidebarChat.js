@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./SidebarChat.css";
 import { useStateValue } from "../StateProvider";
 import { actionTypes } from "../reducer";
-import axios from "../axios";
-
+import instance from "../axios";
 
 function SidebarChat({ chatroom, addNewChat }) {
   const [seed, setSeed] = useState("");
@@ -28,7 +27,7 @@ function SidebarChat({ chatroom, addNewChat }) {
     const roomName = prompt("Please enter name for chatroom");
 
     if (roomName) {
-      await axios.post("/api/v1/chatrooms/new", {
+      await instance.post("/api/v1/chatrooms/new", {
         name: roomName,
       });
     }

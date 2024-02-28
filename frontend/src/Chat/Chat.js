@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./Chat.css";
-import axios from "../axios";
+import instance from "../axios";
 import { useStateValue } from "../StateProvider";
 import { auth } from "../firebase";
 import Picker from "emoji-picker-react";
@@ -44,7 +44,7 @@ function Chat({ messages }) {
     if (input.length === 0) {
       return;
     }
-    await axios.post("/api/v1/messages/new", {
+    await instance.post("/api/v1/messages/new", {
       message: input,
       name: user?.displayName,
       timestamp: new Date().toUTCString(),
