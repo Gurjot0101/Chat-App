@@ -1,9 +1,9 @@
 
 import React, { useEffect, useState } from "react";
 import "./SidebarChat.css";
-import { useStateValue } from "./StateProvider";
-import { actionTypes } from "./reducer";
-import axios from "./axios";
+import { useStateValue } from "../StateProvider";
+import { actionTypes } from "../reducer";
+import axios from "../axios";
 
 
 function SidebarChat({ chatroom, addNewChat }) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import "./Login.css";
-import Chat from "./Chat";
+import Chat from "./Chat/Chat";
 import Sidebar from "./Sidebar";
 import Leftbar from "./LeftBar";
 import Pusher from "pusher-js";

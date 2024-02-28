@@ -1,10 +1,8 @@
-
-//import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import React, { useEffect, useState, useRef } from "react";
 import "./Chat.css";
-import axios from "./axios";
-import { useStateValue } from "./StateProvider";
-import { auth } from "./firebase";
+import axios from "../axios";
+import { useStateValue } from "../StateProvider";
+import { auth } from "../firebase";
 import Picker from "emoji-picker-react";
 
 function Chat({ messages }) {

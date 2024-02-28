@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
-import SidebarChat from "./SidebarChat";
+import SidebarChat from "./Chat/SidebarChat";
 import { useStateValue } from "./StateProvider";
 import axios from "./axios";
 import PopB from "./Chat/popup";
