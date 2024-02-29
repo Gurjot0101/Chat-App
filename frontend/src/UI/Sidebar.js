@@ -4,6 +4,8 @@ import SidebarChat from "../Chat/SidebarChat";
 import { useStateValue } from "../StateProvider";
 import PopB from "../Chat/popup";
 import SearchIcon from '@mui/icons-material/Search';
+import SortMenu from "./SortMenu";
+
 
 function Sidebar({ chatrooms }) {
   const [{ user }, dispatch] = useStateValue();
@@ -24,19 +26,23 @@ function Sidebar({ chatrooms }) {
         
       </div>
       <div className="sorting__bar">
-        <div>Sort By: Default</div>
+        <div>
+          <SortMenu/>
+        </div>
       </div>
       
       <div className="sidebar__chats">
         <SidebarChat addNewChat={true} />
         <PopB />
+
         {chatrooms
           ?.filter((chatroom) =>
             chatroom?.name?.toLowerCase()?.includes(filter?.toLowerCase())
           )
           ?.map((chatroom, index) => (
             <SidebarChat key={index} chatroom={chatroom} />
-          ))}
+        ))}
+        
       </div>
       
     </div>

@@ -82,6 +82,8 @@
     max-width: 90%;
     border-radius: 20px;
     box-shadow: 0px 5px 5px 4px rgba(208, 207, 207, 0.313);
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .chat__receiver {
