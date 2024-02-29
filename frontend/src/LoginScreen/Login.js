@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import "./Login.css";
-import { auth, provider } from "./firebase";
-import { useStateValue } from "./StateProvider";
-import { actionTypes } from "./reducer";
+import { auth, provider } from "../firebase";
+import { useStateValue } from "../StateProvider";
+import { actionTypes } from "../reducer";
 
 function Login() {
   const [{}, dispatch] = useStateValue();

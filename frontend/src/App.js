@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import "./Login.css";
 import Chat from "./Chat/Chat";
 import Sidebar from "./Sidebar";
 import Leftbar from "./LeftBar";
 import Pusher from "pusher-js";
 import instance from "./axios";
-import Login from "./Login";
+import Login from "./LoginScreen/Login";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
 import { actionTypes } from "./reducer";
-import DefaultScreen from "./DefaultScreen";
+import DefaultScreen from "./Default screen/DefaultScreen";
 
 function App() {
   const [messages, setMessages] = useState([]);
