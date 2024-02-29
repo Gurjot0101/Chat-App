@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./Login.css";
-import { auth, provider } from "../firebase";
+import { auth, provider } from "../Auth/firebase";
 import { useStateValue } from "../StateProvider";
 import { actionTypes } from "../reducer";
 

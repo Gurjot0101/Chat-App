@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "./Chat.css";
 import instance from "../axios";
 import { useStateValue } from "../StateProvider";
-import { auth } from "../firebase";
+import { auth } from "../Auth/firebase";
 import Picker from "emoji-picker-react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';

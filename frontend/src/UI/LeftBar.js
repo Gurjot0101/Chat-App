@@ -1,8 +1,8 @@
 import React from "react";
 import "./LeftBar.css";
 import { useEffect, useState } from "react";
-import { auth } from "./firebase";
-import { useStateValue } from "./StateProvider";
+import { auth } from "../Auth/firebase";
+import { useStateValue } from "../StateProvider";
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';

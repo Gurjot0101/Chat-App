@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Chat from "./Chat/Chat";
-import Sidebar from "./Sidebar";
-import Leftbar from "./LeftBar";
+import Sidebar from "./UI/Sidebar";
+import Leftbar from "./UI/LeftBar";
 import Pusher from "pusher-js";
 import instance from "./axios";
 import Login from "./LoginScreen/Login";
 import { useStateValue } from "./StateProvider";
-import { auth } from "./firebase";
+import { auth } from "./Auth/firebase";
 import { actionTypes } from "./reducer";
 import DefaultScreen from "./Default screen/DefaultScreen";
 

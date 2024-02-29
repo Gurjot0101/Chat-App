@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
-import SidebarChat from "./Chat/SidebarChat";
-import { useStateValue } from "./StateProvider";
-import PopB from "./Chat/popup";
+import SidebarChat from "../Chat/SidebarChat";
+import { useStateValue } from "../StateProvider";
+import PopB from "../Chat/popup";
 import SearchIcon from '@mui/icons-material/Search';
 
 function Sidebar({ chatrooms }) {
