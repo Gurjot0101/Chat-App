@@ -5,7 +5,7 @@ import Pusher from "pusher";
 import cors from "cors";
 import messageRoutes from "./routes/messages.js";
 import chatroomRouter from "./routes/chatrooms.js";
-import 'dotenv/config'
+import "dotenv/config";
 
 // app config
 const app = express();
@@ -16,7 +16,7 @@ const pusher = new Pusher({
   key: "9a5aa5234d0a14d2e800",
   secret: "d0d4d63513a0d53a9721",
   cluster: "ap2",
-  useTLS: true
+  useTLS: true,
 });
 
 // middleware
