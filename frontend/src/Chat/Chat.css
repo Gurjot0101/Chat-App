@@ -102,10 +102,11 @@
 }
 
 .chat__footer {
+    padding: 1%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 62px;
+    height: 10%;
     border-top: 1px solid lightgray;
 }
 

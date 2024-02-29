@@ -3,11 +3,11 @@ import "./Chat.css";
 import instance from "../axios";
 import { useStateValue } from "../StateProvider";
 import { auth } from "../Auth/firebase";
+
 import Picker from "emoji-picker-react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AttachmentIcon from '@mui/icons-material/Attachment';
-
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import SendIcon from '@mui/icons-material/Send';
@@ -23,9 +23,11 @@ function Chat({ messages }) {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
   };
+
   const onEmojiClick = (event, emojiObject) => {
     setInput(input + emojiObject.emoji);
   };
@@ -37,6 +39,7 @@ function Chat({ messages }) {
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));
   }, [selectedChatroom]);
+
   const lastSeen = "today";
 
   const sendMessage = async (e) => {
@@ -55,6 +58,7 @@ function Chat({ messages }) {
     setInput("");
   };
 
+  
   return (
     <div className="chat">
       <div className="chat__header">
@@ -71,13 +75,13 @@ function Chat({ messages }) {
       </div>
 
       <div className="chat__body">
-        {console.log(messages)}
         {messages.map((message, index) => (
           <p
             key={index}
-            className={`chat__message ${
-              user?.uid === message.uid && "chat__receiver"
-            } ${message.chatroomId !== selectedChatroom?._id && "chat__hide"}`}
+            className={`chat__message 
+              ${user?.uid === message.uid && "chat__receiver"} 
+              ${message.chatroomId !== selectedChatroom?._id && "chat__hide"}`
+            }
           >
             <div className="chat__name">{message.name}</div>
             <div className="chat__msg">{message.message}</div>
@@ -86,7 +90,9 @@ function Chat({ messages }) {
         ))}
         <div ref={messagesEndRef} />
       </div>
+
       {isShowEmojiPicker && <Picker onEmojiClick={onEmojiClick} />}
+
       <div className="chat__footer">
         {isShowEmojiPicker ? (
           <span onClick={toggleEmojiPicker}>
@@ -97,6 +103,7 @@ function Chat({ messages }) {
             <EmojiEmotionsIcon/>
           </span>
         )}
+
         <form>
           <input
             value={input}
@@ -104,15 +111,11 @@ function Chat({ messages }) {
             placeholder="Type a message"
             type="text"
           />
-          <button onClick={sendMessage} type="submit">
-            
-          </button>
         </form>
+        
           <AttachmentIcon/>
           <MicIcon/>
-        <span onClick={sendMessage}>
-        <SendIcon/>
-        </span>
+          <SendIcon onClick={sendMessage}/>
       </div>
     </div>
   );
