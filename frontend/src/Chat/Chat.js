@@ -4,6 +4,14 @@ import instance from "../axios";
 import { useStateValue } from "../StateProvider";
 import { auth } from "../firebase";
 import Picker from "emoji-picker-react";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ManageSearchIcon from '@mui/icons-material/ManageSearch';
+import AttachmentIcon from '@mui/icons-material/Attachment';
+
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+import SendIcon from '@mui/icons-material/Send';
+import MicIcon from '@mui/icons-material/Mic';
 
 function Chat({ messages }) {
   const [input, setInput] = useState("");
@@ -31,13 +39,6 @@ function Chat({ messages }) {
   }, [selectedChatroom]);
   const lastSeen = "today";
 
-  const logout = () => {
-    try {
-      auth.signOut();
-    } catch (e) {
-      console.log(e);
-    }
-  };
   const sendMessage = async (e) => {
     e.preventDefault();
 
@@ -57,7 +58,7 @@ function Chat({ messages }) {
   return (
     <div className="chat">
       <div className="chat__header">
-        Avatar
+        <AccountCircleIcon />
 
         <div className="chat__headerInfo">
           <h3>{selectedChatroom?.name}</h3>
@@ -65,11 +66,7 @@ function Chat({ messages }) {
         </div>
 
         <div className="chat__headerRight">
-          search
-          attacth
-          <span onClick={() => logout()}>
-            exit
-          </span>
+          <ManageSearchIcon/>          
         </div>
       </div>
 
@@ -93,11 +90,11 @@ function Chat({ messages }) {
       <div className="chat__footer">
         {isShowEmojiPicker ? (
           <span onClick={toggleEmojiPicker}>
-            emoji
+            <InsertEmoticonIcon/>
           </span>
         ) : (
           <span onClick={toggleEmojiPicker}>
-            insert emote
+            <EmojiEmotionsIcon/>
           </span>
         )}
         <form>
@@ -108,12 +105,13 @@ function Chat({ messages }) {
             type="text"
           />
           <button onClick={sendMessage} type="submit">
-            Send a message
+            
           </button>
         </form>
-        mic
+          <AttachmentIcon/>
+          <MicIcon/>
         <span onClick={sendMessage}>
-          send
+        <SendIcon/>
         </span>
       </div>
     </div>
