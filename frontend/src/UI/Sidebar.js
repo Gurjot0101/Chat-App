@@ -3,9 +3,8 @@ import "./Sidebar.css";
 import SidebarChat from "../Chat/SidebarChat";
 import { useStateValue } from "../StateProvider";
 import PopB from "../Chat/popup";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 import SortMenu from "./SortMenu";
-
 
 function Sidebar({ chatrooms }) {
   const [{ user }, dispatch] = useStateValue();
@@ -15,7 +14,7 @@ function Sidebar({ chatrooms }) {
     <div className="sidebar">
       <div className="sidebar__search">
         <div className="sidebar__searchContainer">
-          <SearchIcon/>
+          <SearchIcon />
           <input
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
@@ -23,17 +22,15 @@ function Sidebar({ chatrooms }) {
             type="text"
           />
         </div>
-        
       </div>
       <div className="sorting__bar">
         <div>
-          <SortMenu/>
+          <SortMenu />
         </div>
       </div>
-      
+
       <div className="sidebar__chats">
         <SidebarChat addNewChat={true} />
-        <PopB />
 
         {chatrooms
           ?.filter((chatroom) =>
@@ -41,10 +38,10 @@ function Sidebar({ chatrooms }) {
           )
           ?.map((chatroom, index) => (
             <SidebarChat key={index} chatroom={chatroom} />
-        ))}
-        
+          ))}
+
+        <PopB />
       </div>
-      
     </div>
   );
 }

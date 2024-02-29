@@ -1,14 +1,14 @@
-
 import React, { useEffect, useState } from "react";
 import "./SidebarChat.css";
 import { useStateValue } from "../StateProvider";
 import { actionTypes } from "../reducer";
 import instance from "../axios";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function SidebarChat({ chatroom, addNewChat }) {
   const [seed, setSeed] = useState("");
   const [{ selectedChatroom }, dispatch] = useStateValue();
+
   const lastMessage = {
     message: "This is last message",
     timestamp: "This is time stamp",
@@ -44,16 +44,13 @@ function SidebarChat({ chatroom, addNewChat }) {
     >
       <div className="sidebarChat__head">
         <div>
-          <AccountCircleIcon/>
+          <AccountCircleIcon />
         </div>
         <div className="sidebarChat__info">
           <h2>{chatroom?.name.toUpperCase()}</h2>
-
         </div>
-        <div></div>
       </div>
-      <div className="sidebarChat__tail">
-      </div>
+      <div className="sidebarChat__tail"></div>
     </div>
   ) : (
     <div></div>

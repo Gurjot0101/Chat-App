@@ -16,7 +16,7 @@ function App() {
   const [chatrooms, setChatrooms] = useState([]);
   const [{ user, selectedChatroom }, dispatch] = useStateValue();
   const [login, setLogin] = useState(true);
-  
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       let isMounted = true;

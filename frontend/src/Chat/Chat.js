@@ -5,27 +5,30 @@ import { useStateValue } from "../StateProvider";
 import { auth } from "../Auth/firebase";
 
 import Picker from "emoji-picker-react";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ManageSearchIcon from '@mui/icons-material/ManageSearch';
-import AttachmentIcon from '@mui/icons-material/Attachment';
-import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import SendIcon from '@mui/icons-material/Send';
-import MicIcon from '@mui/icons-material/Mic';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ManageSearchIcon from "@mui/icons-material/ManageSearch";
+import AttachmentIcon from "@mui/icons-material/Attachment";
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import SendIcon from "@mui/icons-material/Send";
+import MicIcon from "@mui/icons-material/Mic";
 
 function Chat({ messages }) {
   const [input, setInput] = useState("");
+
   const [isShowEmojiPicker, setIsShowEmojiPicker] = useState(false);
+
   const [{ user, selectedChatroom }, dispatch] = useStateValue();
+
   const [seed, setSeed] = useState("");
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, selectedChatroom]);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
   };
 
   const onEmojiClick = (event, emojiObject) => {
@@ -39,8 +42,6 @@ function Chat({ messages }) {
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));
   }, [selectedChatroom]);
-
-  const lastSeen = "today";
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -58,7 +59,25 @@ function Chat({ messages }) {
     setInput("");
   };
 
-  
+  function formatDate(date) {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "long" });
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    minutes = minutes.toString().padStart(2, "0");
+
+    return `${hours}:${minutes} ${ampm}, ${day} ${month}`;
+  }
+
+  const now = new Date();
+
+  const lastSeen = formatDate(now);
+
   return (
     <div className="chat">
       <div className="chat__header">
@@ -70,7 +89,7 @@ function Chat({ messages }) {
         </div>
 
         <div className="chat__headerRight">
-          <ManageSearchIcon/>          
+          <ManageSearchIcon />
         </div>
       </div>
 
@@ -80,10 +99,11 @@ function Chat({ messages }) {
             key={index}
             className={`chat__message 
               ${user?.uid === message.uid && "chat__receiver"} 
-              ${message.chatroomId !== selectedChatroom?._id && "chat__hide"}`
-            }
+              ${message.chatroomId !== selectedChatroom?._id && "chat__hide"}`}
           >
-            <div className="chat__name">{message.name}</div>
+            <div className="chat__name">
+              {user?.uid === message.uid ? "You" : message.name}
+            </div>
             <div className="chat__msg">{message.message}</div>
             <span className="chat__timestamp">{message.timestamp}</span>
           </p>
@@ -96,11 +116,11 @@ function Chat({ messages }) {
       <div className="chat__footer">
         {isShowEmojiPicker ? (
           <span onClick={toggleEmojiPicker}>
-            <InsertEmoticonIcon/>
+            <InsertEmoticonIcon />
           </span>
         ) : (
           <span onClick={toggleEmojiPicker}>
-            <EmojiEmotionsIcon/>
+            <EmojiEmotionsIcon />
           </span>
         )}
 
@@ -112,10 +132,10 @@ function Chat({ messages }) {
             type="text"
           />
         </form>
-        
-          <AttachmentIcon/>
-          <MicIcon/>
-          <SendIcon onClick={sendMessage}/>
+
+        <AttachmentIcon />
+        <MicIcon />
+        <SendIcon onClick={sendMessage} />
       </div>
     </div>
   );
