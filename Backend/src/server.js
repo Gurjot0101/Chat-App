@@ -12,27 +12,19 @@ const app = express();
 const port = process.env.PORT || 9000;
 
 const pusher = new Pusher({
-  appId: "1758324",
-  key: "1e733c5fc9794a0d6b9f",
-  secret: "5f9a150864d55ce0957c",
+  appId: "1758323",
+  key: "9a5aa5234d0a14d2e800",
+  secret: "d0d4d63513a0d53a9721",
   cluster: "ap2",
   useTLS: true
 });
 
-
 // middleware
 app.use(express.json());
-
 app.use(cors());
 
 app.use(messageRoutes);
 app.use(chatroomRouter);
-
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origins", "*");
-//   res.setHeader("Access-Control-Allow-Headers", "*");
-//   next();
-// });
 
 // DB config
 const connection_url = process.env.MONGO_URL;
@@ -49,7 +41,7 @@ mongoose
 const db = mongoose.connection;
 
 db.once("open", () => {
-  console.log("Connecting DB");
+  console.log("Connecting to DB");
 
   const msgCollection = db.collection("messages");
   const chatroomCollection = db.collection("chatrooms");
