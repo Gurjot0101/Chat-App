@@ -57,6 +57,7 @@ function Chat({ messages }) {
       chatroomId: selectedChatroom?._id,
     });
     setInput("");
+    setIsShowEmojiPicker(false);
   };
 
   function formatDate(date) {
