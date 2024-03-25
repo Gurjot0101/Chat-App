@@ -36,8 +36,8 @@ function Sidebar({ chatrooms }) {
           ?.filter((chatroom) =>
             chatroom?.name?.toLowerCase()?.includes(filter?.toLowerCase())
           )
-          ?.map((chatroom, index) => (
-            <SidebarChat key={index} chatroom={chatroom} />
+          ?.map((chatroom) => (
+            <SidebarChat chatroom={chatroom} />
           ))}
 
         <PopB />

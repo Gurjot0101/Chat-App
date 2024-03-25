@@ -6,8 +6,8 @@ import Leftbar from "./UI/LeftBar";
 import Pusher from "pusher-js";
 import instance from "./axios";
 import Login from "./LoginScreen/Login";
-import { useStateValue } from "./StateProvider";
 import { auth } from "./Auth/firebase";
+import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
 import DefaultScreen from "./Default screen/DefaultScreen";
 
