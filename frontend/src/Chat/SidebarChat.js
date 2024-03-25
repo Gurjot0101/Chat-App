@@ -7,7 +7,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 function SidebarChat({ chatroom, addNewChat }) {
   const [{ selectedChatroom }, dispatch] = useStateValue();
 
-  const isAlreadySelected = selectedChatroom;
+  const isAlreadySelected = chatroom === selectedChatroom;
 
   const handleChatroomChange = () => {
     dispatch({
