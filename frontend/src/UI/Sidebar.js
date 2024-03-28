@@ -7,7 +7,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import SortMenu from "./SortMenu";
 
 function Sidebar({ chatrooms }) {
-  const [{ user }, dispatch] = useStateValue();
   const [filter, setFilter] = useState("");
 
   return (

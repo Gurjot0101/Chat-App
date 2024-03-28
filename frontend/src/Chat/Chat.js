@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import "./Chat.css";
 import instance from "../axios";
 import { useStateValue } from "../StateProvider";
-import { auth } from "../Auth/firebase";
 
 import Picker from "emoji-picker-react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -56,9 +55,25 @@ function Chat({ messages }) {
       uid: user?.uid,
       chatroomId: selectedChatroom?._id,
     });
+    parseInt(recentMSG(new Date())) 
     setInput("");
     setIsShowEmojiPicker(false);
   };
+
+  function recentMSG(date){
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    minutes = minutes.toString().padStart(2, "0");
+
+    return `${year}${month}${day}${hours}${minutes}`;
+  }
 
   function formatDate(date) {
     let hours = date.getHours();

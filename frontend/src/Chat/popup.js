@@ -15,11 +15,27 @@ function PopB() {
     if (roomName) {
       await instance.post("/api/v1/chatrooms/new", {
         name: roomName,
+        recentmsg: parseInt(recentMSG(new Date())) 
       });
       console.log("Creating chat with room name:", name);
     }
     setRoomName("");
   };
+
+  function recentMSG(date){
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    minutes = minutes.toString().padStart(2, "0");
+
+    return `${year}${month}${day}${hours}${minutes}`;
+  }
 
   return (
     <div className="popupbtn">
