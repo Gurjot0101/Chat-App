@@ -10,7 +10,7 @@ function Sidebar({ chatrooms }) {
   const [filter, setFilter] = useState("");
   const [chatr, setChatr] = useState(chatrooms);
 
-  setChatr(chatr.sort((a, b) => b.recentmsg - a.recentmsg));
+  //setChatr(chatr.sort((a, b) => b.recentmsg - a.recentmsg));
 
   return (
     <div className="sidebar">
@@ -34,12 +34,12 @@ function Sidebar({ chatrooms }) {
       <div className="sidebar__chats">
         <SidebarChat addNewChat={true} />
 
-        {chatr
-          ?.filter((chatr) =>
-            chatr?.name?.toLowerCase()?.includes(filter?.toLowerCase())
+        {chatrooms
+          ?.filter((chatroom) =>
+            chatroom?.name?.toLowerCase()?.includes(filter?.toLowerCase())
           )
-          ?.map((chatr) => (
-            <SidebarChat chatroom={chatr} />
+          ?.map((chatroom) => (
+            <SidebarChat chatroom={chatroom} />
           ))}
 
         <PopB />
