@@ -8,6 +8,9 @@ import SortMenu from "./SortMenu";
 
 function Sidebar({ chatrooms }) {
   const [filter, setFilter] = useState("");
+  const [chatr, setChatr] = useState(chatrooms);
+
+  setChatr(chatr.sort((a, b) => b.recentmsg - a.recentmsg));
 
   return (
     <div className="sidebar">
@@ -31,12 +34,12 @@ function Sidebar({ chatrooms }) {
       <div className="sidebar__chats">
         <SidebarChat addNewChat={true} />
 
-        {chatrooms
-          ?.filter((chatroom) =>
-            chatroom?.name?.toLowerCase()?.includes(filter?.toLowerCase())
+        {chatr
+          ?.filter((chatr) =>
+            chatr?.name?.toLowerCase()?.includes(filter?.toLowerCase())
           )
-          ?.map((chatroom) => (
-            <SidebarChat chatroom={chatroom} />
+          ?.map((chatr) => (
+            <SidebarChat chatroom={chatr} />
           ))}
 
         <PopB />

@@ -4,7 +4,7 @@ import ChatRooms from "../models/dbChatrooms.js";
 const chatroomRouter = Router();
 
 chatroomRouter.get("/api/v1/chatrooms/sync", (req, res) => {
-  ChatRooms.find().sort({ recentmsg: -1 })((err, data) => {
+  ChatRooms.find((err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
