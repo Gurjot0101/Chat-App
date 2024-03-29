@@ -11,7 +11,7 @@ function PopB() {
   const [isOpen, setIsOpen] = useState(false);
 
   const createChat = async (name) => {
-    const roomName = name;
+    const roomName = name.toUpperCase();
     if (roomName) {
       await instance.post("/api/v1/chatrooms/new", {
         name: roomName,

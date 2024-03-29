@@ -42,6 +42,22 @@ function Chat({ messages }) {
     setSeed(Math.floor(Math.random() * 5000));
   }, [selectedChatroom]);
 
+  function recentMSG(date){
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let sec = date.getSeconds();
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const ampm = hours >= 12 ? 1 : 0;
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    minutes = minutes.toString().padStart(2, "0");
+
+    return `${year}${month}${day}${ampm}${hours}${minutes}${sec}`;
+  }
+
   const sendMessage = async (e) => {
     e.preventDefault();
 
@@ -60,7 +76,7 @@ function Chat({ messages }) {
     setIsShowEmojiPicker(false);
   };
 
-  const updateChatroom = async (selectedChatroom, recentMSG) => {
+  const updateChatroom = async (selectedChatroom) => {
     const roomName = selectedChatroom;
     if (roomName) {
       await instance.patch(`/api/v1/chatrooms/${roomName}`, {
@@ -70,21 +86,7 @@ function Chat({ messages }) {
     }
   }
 
-  function recentMSG(date){
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let sec = date.getSeconds();
-    const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    const ampm = hours >= 12 ? 1 : 0;
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-
-    minutes = minutes.toString().padStart(2, "0");
-
-    return `${year}${month}${day}${ampm}${hours}${minutes}${sec}`;
-  }
+  
 
   function formatDate(date) {
     let hours = date.getHours();

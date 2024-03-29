@@ -31,11 +31,8 @@ function Sidebar({ chatrooms }) {
 
       <div className="sidebar__chats">
         <SidebarChat addNewChat={true} />
-
+        
         {chatrooms
-          ?.filter((chatroom) =>
-            chatroom?.name?.toLowerCase()?.includes(filter?.toLowerCase())
-          )
           ?.sort((a, b) => b.recentmsg - a.recentmsg)
           ?.map((chatroom) => (
             <SidebarChat chatroom={chatroom} />
