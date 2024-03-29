@@ -7,10 +7,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import SortMenu from "./SortMenu";
 
 function Sidebar({ chatrooms }) {
+  const [{ user }, dispatch] = useStateValue();
   const [filter, setFilter] = useState("");
-  const [chatr, setChatr] = useState(chatrooms);
-
-  //setChatr(chatr.sort((a, b) => b.recentmsg - a.recentmsg));
 
   return (
     <div className="sidebar">
@@ -38,9 +36,11 @@ function Sidebar({ chatrooms }) {
           ?.filter((chatroom) =>
             chatroom?.name?.toLowerCase()?.includes(filter?.toLowerCase())
           )
+          ?.sort((a, b) => b.recentmsg - a.recentmsg)
           ?.map((chatroom) => (
-            <SidebarChat chatroom={chatroom} />
-          ))}
+            <SidebarChat key={chatroom.recentmsg} chatroom={chatroom} />
+          ))
+        }
 
         <PopB />
       </div>

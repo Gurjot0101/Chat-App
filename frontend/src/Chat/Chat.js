@@ -66,13 +66,13 @@ function Chat({ messages }) {
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
-
+    const ampm = hours >= 12 ? 1 : 0;
     hours = hours % 12;
     hours = hours ? hours : 12;
 
     minutes = minutes.toString().padStart(2, "0");
 
-    return `${year}${month}${day}${hours}${minutes}`;
+    return `${year}${month}${day}${ampm}${hours}${minutes}`;
   }
 
   function formatDate(date) {
@@ -111,7 +111,7 @@ function Chat({ messages }) {
 
       <div className="chat__body">
         {messages.map((message, index) => (
-          <p
+          <div
             key={index}
             className={`chat__message 
               ${user?.uid === message.uid && "chat__receiver"} 
@@ -122,7 +122,7 @@ function Chat({ messages }) {
             </div>
             <div className="chat__msg">{message.message}</div>
             <span className="chat__timestamp">{message.timestamp}</span>
-          </p>
+          </div>
         ))}
         <div ref={messagesEndRef} />
       </div>
