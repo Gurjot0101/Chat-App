@@ -68,12 +68,14 @@ db.once("open", () => {
 
   chatroomStream.on("change", (change) => {
     console.log("A change occurred in chatrooms", change);
-
+    
     if (change.operationType == "insert") {
       const messageDetails = change.fullDocument;
       pusher.trigger("chatrooms", "inserted", {
         name: messageDetails.name,
       });
+    } else if (change.operationType == "update") {
+      const messageDetails = change.fullDocument;
     } else {
       console.log("Error triggering Pusher in chatrooms");
     }

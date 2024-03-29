@@ -106,7 +106,8 @@ function Chat({ messages }) {
       </div>
 
       <div className="chat__body">
-        {messages.map((message, index) => (
+        {messages==null?<div className="null__messages">nufdsgsdgll</div>: 
+          messages.map((message, index) => (
           <div
             key={index}
             className={`chat__message 

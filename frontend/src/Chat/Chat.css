@@ -76,6 +76,10 @@
   padding: 5px;
 }
 
+.null__messages {
+  color: black;
+}
+
 .chat__msg {
   padding: 7px 0px 7px 15px;
   min-width: 50%;
