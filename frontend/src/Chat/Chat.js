@@ -55,10 +55,20 @@ function Chat({ messages }) {
       uid: user?.uid,
       chatroomId: selectedChatroom?._id,
     });
-    parseInt(recentMSG(new Date())) 
+    updateChatroom(selectedChatroom,parseInt(recentMSG(new Date()))); 
     setInput("");
     setIsShowEmojiPicker(false);
   };
+
+  const updateChatroom = async (selectedChatroom, recentMSG) => {
+    const roomName = selectedChatroom;
+    if (roomName) {
+      await instance.patch(`/api/v1/chatrooms/${roomName}`, {
+        recentmsg: parseInt(recentMSG(new Date())) 
+      });
+      console.log("recentmsg changed for", roomName);
+    }
+  }
 
   function recentMSG(date){
     let hours = date.getHours();
