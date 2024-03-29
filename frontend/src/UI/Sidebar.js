@@ -38,7 +38,7 @@ function Sidebar({ chatrooms }) {
           )
           ?.sort((a, b) => b.recentmsg - a.recentmsg)
           ?.map((chatroom) => (
-            <SidebarChat key={chatroom.recentmsg} chatroom={chatroom} />
+            <SidebarChat chatroom={chatroom} />
           ))
         }
 
