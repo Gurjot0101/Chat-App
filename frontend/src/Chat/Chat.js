@@ -63,6 +63,7 @@ function Chat({ messages }) {
   function recentMSG(date){
     let hours = date.getHours();
     let minutes = date.getMinutes();
+    let sec = date.getSeconds();
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
@@ -72,7 +73,7 @@ function Chat({ messages }) {
 
     minutes = minutes.toString().padStart(2, "0");
 
-    return `${year}${month}${day}${ampm}${hours}${minutes}`;
+    return `${year}${month}${day}${ampm}${hours}${minutes}${sec}`;
   }
 
   function formatDate(date) {
