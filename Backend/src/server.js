@@ -74,9 +74,9 @@ db.once("open", () => {
       pusher.trigger("chatrooms", "inserted", {
         name: messageDetails.name,
       });
-    } else if (change.operationType == "update") {
-      const messageDetails = change.fullDocument;
-    } else {
+    // } else if (change.operationType == "update") {
+    //   const messageDetails = change.fullDocument;
+    // } else {
       console.log("Error triggering Pusher in chatrooms");
     }
   });
