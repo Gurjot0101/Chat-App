@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
 import SidebarChat from "../Chat/SidebarChat";
-import { useStateValue } from "../StateProvider";
+//import { useStateValue } from "../StateProvider";
 import PopB from "../Chat/popup";
 import SearchIcon from "@mui/icons-material/Search";
 import SortMenu from "./SortMenu";
@@ -33,7 +33,7 @@ function Sidebar({ chatrooms }) {
       </div>
 
       <div className="sidebar__chats">
-        {/* <SidebarChat addNewChat={true} /> */}
+        <SidebarChat addNewChat={true} />
         
         {
           chatrlist.map((chatroom) => (

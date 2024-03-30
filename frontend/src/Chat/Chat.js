@@ -30,6 +30,7 @@ function Chat({ messages }) {
     messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
   };
 
+  // Emoji start
   const onEmojiClick = (event, emojiObject) => {
     setInput(input + emojiObject.emoji);
   };
@@ -37,10 +38,7 @@ function Chat({ messages }) {
   const toggleEmojiPicker = () => {
     setIsShowEmojiPicker(!isShowEmojiPicker);
   };
-
-  useEffect(() => {
-    setSeed(Math.floor(Math.random() * 5000));
-  }, [selectedChatroom]);
+  // Emoji end
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -71,6 +69,7 @@ function Chat({ messages }) {
     }
   }
 
+  //Date
   function formatDate(date) {
     let hours = date.getHours();
     let minutes = date.getMinutes();
@@ -89,6 +88,7 @@ function Chat({ messages }) {
   const now = new Date();
 
   const lastSeen = formatDate(now);
+  // Date end
 
   return (
     <div className="chat">
