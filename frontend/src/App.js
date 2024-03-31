@@ -15,34 +15,40 @@ function App() {
   const [{ user, selectedChatroom }, dispatch] = useStateValue();
   const [login, setLogin] = useState(true);
 
-  const [prevmsg,setPM] = useState([]);//Previous msg []
-  const [prevcr,setPC] = useState([]);//Previous chatroom []
+  const [prevmsg, setPM] = useState([]); //Previous msg []
+  const [prevcr, setPC] = useState([]); //Previous chatroom []
 
   //when message pusher is called
-  const setMessages = useCallback((newMessage) => {
-    const newCA = [...prevcr]
-    const sortedCA = newCA.sort((a,b) => b.recentmsg - a.recentmsg)
-    dispatch({
-      type: actionTypes.SET_MESSAGES,
-      messages: [...prevmsg,newMessage]
-    })
-    dispatch({
-      type: actionTypes.SET_CHATROOMS,
-      chatrooms: [...sortedCA]
-    })
-    setPC([...sortedCA])
-    setPM([...prevmsg,newMessage])
-  }, [dispatch,prevmsg,prevcr]);
+  const setMessages = useCallback(
+    (newMessage) => {
+      const newCA = [...prevcr];
+      const sortedCA = newCA.sort((a, b) => b.recentmsg - a.recentmsg);
+      dispatch({
+        type: actionTypes.SET_MESSAGES,
+        messages: [...prevmsg, newMessage],
+      });
+      dispatch({
+        type: actionTypes.SET_CHATROOMS,
+        chatrooms: [...sortedCA],
+      });
+      setPC([...sortedCA]);
+      setPM([...prevmsg, newMessage]);
+    },
+    [dispatch, prevmsg, prevcr]
+  );
 
-  const setChatrooms = useCallback((newChatroom) => {
-    const newCA = [newChatroom,...prevcr]
-    const sortedCA = newCA.sort((a,b) => b.recentmsg - a.recentmsg)
-    dispatch({
-      type: actionTypes.SET_CHATROOMS,
-      chatrooms: sortedCA
-    })
-    setPC(sortedCA)
-  }, [dispatch,prevcr]);
+  const setChatrooms = useCallback(
+    (newChatroom) => {
+      const newCA = [newChatroom, ...prevcr];
+      const sortedCA = newCA.sort((a, b) => b.recentmsg - a.recentmsg);
+      dispatch({
+        type: actionTypes.SET_CHATROOMS,
+        chatrooms: sortedCA,
+      });
+      setPC(sortedCA);
+    },
+    [dispatch, prevcr]
+  );
 
   //LOGIN
   useEffect(() => {
@@ -69,16 +75,16 @@ function App() {
     instance.get("/api/v1/messages/sync").then((response) => {
       setPM(response.data);
       dispatch({
-        type:actionTypes.SET_MESSAGES,
-        messages: response.data
-      })
+        type: actionTypes.SET_MESSAGES,
+        messages: response.data,
+      });
     });
     instance.get("/api/v1/chatrooms/sync").then((response) => {
       setPC(response.data);
       dispatch({
-        type:actionTypes.SET_CHATROOMS,
-        chatrooms: response.data
-      })
+        type: actionTypes.SET_CHATROOMS,
+        chatrooms: response.data,
+      });
     });
   }, [dispatch]);
 
@@ -100,7 +106,7 @@ function App() {
   useEffect(() => {
     const pusher = new Pusher("9a5aa5234d0a14d2e800", {
       cluster: "ap2",
-    })
+    });
     const channel = pusher.subscribe("chatrooms");
     channel.bind("inserted", (newChatroom) => {
       setChatrooms(newChatroom);

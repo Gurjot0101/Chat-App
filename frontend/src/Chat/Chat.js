@@ -13,9 +13,7 @@ import MicIcon from "@mui/icons-material/Mic";
 
 function Chat() {
   const [input, setInput] = useState("");
-
   const [isShowEmojiPicker, setIsShowEmojiPicker] = useState(false);
-
   const [{ user, selectedChatroom, messages }] = useStateValue();
 
   //Scroll to end in chat component
@@ -30,23 +28,20 @@ function Chat() {
   };
 
   //Date
+  const now = new Date();
+  const lastSeen = formatDate(now);
+
   function formatDate(date) {
     let hours = date.getHours();
     let minutes = date.getMinutes();
     const day = date.getDate();
     const month = date.toLocaleString("default", { month: "long" });
-
     const ampm = hours >= 12 ? "PM" : "AM";
     hours = hours % 12;
     hours = hours ? hours : 12;
-
     minutes = minutes.toString().padStart(2, "0");
-
     return `${hours}:${minutes} ${ampm}, ${day} ${month}`;
   }
-
-  const now = new Date();
-  const lastSeen = formatDate(now);
   // Date end
 
   // Emoji start
@@ -63,17 +58,17 @@ function Chat() {
   const sendMessage = async (e) => {
     e.preventDefault();
     const time = new Date();
-
     if (input.length === 0) {
       return;
     }
     await instance.post("/api/v1/messages/new", {
       message: input,
       name: user?.displayName,
-      timestamp: time.toUTCString(),
+      timestamp: lastSeen,
       uid: user?.uid,
       chatroomId: selectedChatroom?._id,
     });
+    console.log("old recentmsg =", selectedChatroom.recentmsg);
     updateChatroom(selectedChatroom, time.getTime());
     setInput("");
     setIsShowEmojiPicker(false);
@@ -81,7 +76,6 @@ function Chat() {
 
   const updateChatroom = async (selectedChatroom, time) => {
     const roomName = selectedChatroom;
-    console.log("old recentmsg =", roomName.recentmsg);
     if (roomName) {
       await instance.patch(`/api/v1/chatrooms/${roomName}`, {
         recentmsg: time,

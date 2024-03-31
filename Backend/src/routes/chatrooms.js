@@ -25,17 +25,20 @@ chatroomRouter.post("/api/v1/chatrooms/new", (req, res) => {
   });
 });
 
-chatroomRouter.patch('/api/v1/chatrooms/:roomName', (req, res) => {
+chatroomRouter.patch("/api/v1/chatrooms/:roomName", (req, res) => {
   const roomName = req.params.roomName;
   const recentmsg = req.body.recentmsg;
-  ChatRooms.findOneAndUpdate({ name: roomName }, { recentmsg: recentmsg }, (err, doc) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(doc);
+  ChatRooms.findOneAndUpdate(
+    { name: roomName },
+    { recentmsg: recentmsg },
+    (err, doc) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(doc);
+      }
     }
-  });
-
+  );
   console.log(`recentmsg changed for ${roomName}`);
 });
 
