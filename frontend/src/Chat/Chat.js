@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import "./Chat.css";
 import instance from "../axios";
 import { useStateValue } from "../StateProvider";
-
 import Picker from "emoji-picker-react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
@@ -12,14 +11,14 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import SendIcon from "@mui/icons-material/Send";
 import MicIcon from "@mui/icons-material/Mic";
 
-function Chat({ messages }) {
+function Chat() {
   const [input, setInput] = useState("");
 
   const [isShowEmojiPicker, setIsShowEmojiPicker] = useState(false);
 
-  const [{ user, selectedChatroom }, dispatch] = useStateValue();
+  const [{ user, selectedChatroom, messages }] = useStateValue();
 
-  const [seed, setSeed] = useState("");
+  //Scroll to end in chat component
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -29,45 +28,6 @@ function Chat({ messages }) {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
   };
-
-  // Emoji start
-  const onEmojiClick = (event, emojiObject) => {
-    setInput(input + emojiObject.emoji);
-  };
-
-  const toggleEmojiPicker = () => {
-    setIsShowEmojiPicker(!isShowEmojiPicker);
-  };
-  // Emoji end
-
-  const sendMessage = async (e) => {
-    e.preventDefault();
-    const time = new Date();
-
-    if (input.length === 0) {
-      return;
-    }
-    await instance.post("/api/v1/messages/new", {
-      message: input,
-      name: user?.displayName,
-      timestamp: time.toUTCString(),
-      uid: user?.uid,
-      chatroomId: selectedChatroom?._id,
-    });
-    updateChatroom(selectedChatroom,time.getTime()); 
-    setInput("");
-    setIsShowEmojiPicker(false);
-  };
-
-  const updateChatroom = async (selectedChatroom,time) => {
-    const roomName = selectedChatroom;
-    if (roomName) {
-      await instance.patch(`/api/v1/chatrooms/${roomName}`, {
-        recentmsg: time
-      });
-      console.log("recentmsg changed for", roomName);
-    }
-  }
 
   //Date
   function formatDate(date) {
@@ -86,9 +46,49 @@ function Chat({ messages }) {
   }
 
   const now = new Date();
-
   const lastSeen = formatDate(now);
   // Date end
+
+  // Emoji start
+  const onEmojiClick = (event, emojiObject) => {
+    setInput(input + emojiObject.emoji);
+  };
+
+  const toggleEmojiPicker = () => {
+    setIsShowEmojiPicker(!isShowEmojiPicker);
+  };
+  // Emoji end
+
+  //When message is sent
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    const time = new Date();
+
+    if (input.length === 0) {
+      return;
+    }
+    await instance.post("/api/v1/messages/new", {
+      message: input,
+      name: user?.displayName,
+      timestamp: time.toUTCString(),
+      uid: user?.uid,
+      chatroomId: selectedChatroom?._id,
+    });
+    updateChatroom(selectedChatroom, time.getTime());
+    setInput("");
+    setIsShowEmojiPicker(false);
+  };
+
+  const updateChatroom = async (selectedChatroom, time) => {
+    const roomName = selectedChatroom;
+    console.log("old recentmsg =", roomName.recentmsg);
+    if (roomName) {
+      await instance.patch(`/api/v1/chatrooms/${roomName}`, {
+        recentmsg: time,
+      });
+      console.log("recentmsg changed for", roomName.recentmsg);
+    }
+  };
 
   return (
     <div className="chat">
@@ -106,21 +106,24 @@ function Chat({ messages }) {
       </div>
 
       <div className="chat__body">
-        {messages==null?<div className="null__messages">nufdsgsdgll</div>: 
+        {messages == null ? (
+          <div className="null__messages">nufdsgsdgll</div>
+        ) : (
           messages.map((message, index) => (
-          <div
-            key={index}
-            className={`chat__message 
+            <div
+              key={index}
+              className={`chat__message 
               ${user?.uid === message.uid && "chat__receiver"} 
               ${message.chatroomId !== selectedChatroom?._id && "chat__hide"}`}
-          >
-            <div className="chat__name">
-              {user?.uid === message.uid ? "You" : message.name}
+            >
+              <div className="chat__name">
+                {user?.uid === message.uid ? "You" : message.name}
+              </div>
+              <div className="chat__msg">{message.message}</div>
+              <span className="chat__timestamp">{message.timestamp}</span>
             </div>
-            <div className="chat__msg">{message.message}</div>
-            <span className="chat__timestamp">{message.timestamp}</span>
-          </div>
-        ))}
+          ))
+        )}
         <div ref={messagesEndRef} />
       </div>
 

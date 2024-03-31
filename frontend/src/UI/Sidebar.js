@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
 import SidebarChat from "../Chat/SidebarChat";
-//import { useStateValue } from "../StateProvider";
+import { useStateValue } from "../StateProvider";
 import PopB from "../Chat/popup";
 import SearchIcon from "@mui/icons-material/Search";
 import SortMenu from "./SortMenu";
 
-function Sidebar({ chatrooms }) {
-  //const [{ user }, dispatch] = useStateValue();
+function Sidebar() {
+  const [{ chatrooms }] = useStateValue();
   const [filter, setFilter] = useState("");
 
-  const chatrlist = [... chatrooms];
-  chatrlist.sort((a, b) => b.recentmsg - a.recentmsg);
+  const chatrlist = [...chatrooms];
+  
+  let index = 0;
 
   return (
     <div className="sidebar">
@@ -37,7 +38,7 @@ function Sidebar({ chatrooms }) {
         
         {
           chatrlist.map((chatroom) => (
-            <SidebarChat chatroom={chatroom} />
+            <SidebarChat key={index++} chatroom={chatroom} />
           ))
         }
 
