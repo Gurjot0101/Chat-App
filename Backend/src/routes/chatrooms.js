@@ -27,6 +27,7 @@ chatroomRouter.post("/api/v1/chatrooms/new", (req, res) => {
 
 chatroomRouter.patch("/api/v1/chatrooms/:roomName", (req, res) => {
   const roomName = req.params.roomName;
+  console.log(roomName, ' = ', roomName.recentmsg);
   const recentmsg = req.body.recentmsg;
   ChatRooms.findOneAndUpdate(
     { name: roomName },
