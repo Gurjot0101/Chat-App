@@ -11,13 +11,7 @@ import "dotenv/config";
 const app = express();
 const port = process.env.PORT || 9000;
 
-const pusher = new Pusher({
-  appId: "1758323",
-  key: "9a5aa5234d0a14d2e800",
-  secret: "d0d4d63513a0d53a9721",
-  cluster: "ap2",
-  useTLS: true,
-});
+const pusher = new pusher(process.env.PUSHERK)
 
 // middleware
 app.use(express.json());
