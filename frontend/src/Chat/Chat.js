@@ -80,7 +80,7 @@ function Chat() {
       await instance.patch(`/api/v1/chatrooms/${roomName.name}`, {
         recentmsg: time,
       });
-      console.log("recentmsg changed for", roomName.recentmsg);
+      console.log("recentmsg changed for", roomName.recentmsg, 'TO' ,time);
     }
   };
 
