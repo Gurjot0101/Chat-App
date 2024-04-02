@@ -141,11 +141,11 @@ function Chat() {
       <div className="chat__footer">
         {isShowEmojiPicker ? (
           <span onClick={toggleEmojiPicker}>
-            <InsertEmoticonIcon />
+            <InsertEmoticonIcon className="icons"/>
           </span>
         ) : (
           <span onClick={toggleEmojiPicker}>
-            <EmojiEmotionsIcon />
+            <EmojiEmotionsIcon className="icons" />
           </span>
         )}
         <form>
@@ -156,9 +156,9 @@ function Chat() {
             type="text"
           />
         </form>
-        <AttachmentIcon />
-        <MicIcon />
-        <SendIcon onClick={sendMessage} />
+        <AttachmentIcon className="icons"/>
+        <MicIcon className="icons" />
+        <SendIcon className="icons" onClick={sendMessage} />
       </div>
     </div>
   );

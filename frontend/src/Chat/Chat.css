@@ -153,6 +153,11 @@
   color: #ea00ff;
 }
 
+.chat__footer > .MuiSvgIcon-root:hover{
+  cursor: pointer;
+  color: aquamarine;
+}
+
 .chat__search {
   display: flex;
   align-items: center;

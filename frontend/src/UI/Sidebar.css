@@ -5,6 +5,7 @@
   flex: 0.5;
   overflow: auto;
   position: relative;
+  background-color: #282828;
 }
 
 .sidebar__header {
@@ -69,8 +70,13 @@
 
 .sidebar__chats {
   flex: 1;
-  background-color: rgb(255, 255, 255);
+  background-color: #282828;
   overflow: auto;
+  border-top: 8px solid #ea00ff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  /* border-left: 2px solid #ea00ff;
+  border-right: 2px solid #ea00ff; */
 }
 
 .sidebar__chats::-webkit-scrollbar {
