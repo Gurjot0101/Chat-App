@@ -40,7 +40,7 @@ a > img:hover {
 .login__container > button {
   margin-top: 50px;
   text-transform: inherit !important;
-  background-color: #63caab !important;
+  background-color: #ea00ff !important;
   color: #faefde;
 }
 
@@ -99,7 +99,7 @@ a > img:hover {
   padding-top: 8px;
   padding-bottom: 10px;
   cursor: pointer;
-  border: 3px solid #3cc1ab;
+  border: 3px solid #ea00ff;
 }
 
 .login-btn:hover {

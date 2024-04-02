@@ -4,17 +4,18 @@ import instance from "../axios";
 import { useStateValue } from "../StateProvider";
 import Picker from "emoji-picker-react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import AttachmentIcon from "@mui/icons-material/Attachment";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import SendIcon from "@mui/icons-material/Send";
 import MicIcon from "@mui/icons-material/Mic";
+import SearchIcon from "@mui/icons-material/Search";
 
 function Chat() {
   const [input, setInput] = useState("");
   const [isShowEmojiPicker, setIsShowEmojiPicker] = useState(false);
   const [{ user, selectedChatroom, messages }] = useStateValue();
+  const [filter, setFilter] = useState("");
 
   //Scroll to end in chat component
   const messagesEndRef = useRef(null);
@@ -80,7 +81,7 @@ function Chat() {
       await instance.patch(`/api/v1/chatrooms/${roomName.name}`, {
         recentmsg: time,
       });
-      console.log("recentmsg changed for", roomName.recentmsg, 'TO' ,time);
+      console.log("recentmsg changed for", roomName.recentmsg, "TO", time);
     }
   };
 
@@ -95,28 +96,42 @@ function Chat() {
         </div>
 
         <div className="chat__headerRight">
-          <ManageSearchIcon />
+          <div className="chat__search">
+            <div className="chat__searchContainer">
+              <SearchIcon />
+              <input
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                placeholder="Search for a Message"
+                type="text"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="chat__body">
-        {messages == null ? (
-          <div className="null__messages">nufdsgsdgll</div>
-        ) : (
-          messages.map((message, index) => (
-            <div
-              key={index}
-              className={`chat__message 
+        {messages ? (
+          messages
+            ?.filter((message) =>
+              message?.message?.toLowerCase()?.includes(filter?.toLowerCase())
+            )
+            ?.map((message, index) => (
+              <div
+                key={index}
+                className={`chat__message 
               ${user?.uid === message.uid && "chat__receiver"} 
               ${message.chatroomId !== selectedChatroom?._id && "chat__hide"}`}
-            >
-              <div className="chat__name">
-                {user?.uid === message.uid ? "You" : message.name}
+              >
+                <div className="chat__name">
+                  {user?.uid === message.uid ? "You" : message.name}
+                </div>
+                <div className="chat__msg">{message.message}</div>
+                <span className="chat__timestamp">{message.timestamp}</span>
               </div>
-              <div className="chat__msg">{message.message}</div>
-              <span className="chat__timestamp">{message.timestamp}</span>
-            </div>
-          ))
+            ))
+        ) : (
+          <div className="null__messages">null</div>
         )}
         <div ref={messagesEndRef} />
       </div>
@@ -133,7 +148,6 @@ function Chat() {
             <EmojiEmotionsIcon />
           </span>
         )}
-
         <form>
           <input
             value={input}
@@ -142,7 +156,6 @@ function Chat() {
             type="text"
           />
         </form>
-
         <AttachmentIcon />
         <MicIcon />
         <SendIcon onClick={sendMessage} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./SidebarChat.css";
 import { useStateValue } from "../StateProvider";
 import { actionTypes } from "../reducer";

@@ -16,7 +16,7 @@ function PopB() {
     if (roomName) {
       await instance.post("/api/v1/chatrooms/new", {
         name: roomName,
-        recentmsg: time.getTime()
+        recentmsg: time.getTime(),
       });
       console.log("Creating chat with room name:", name);
     }

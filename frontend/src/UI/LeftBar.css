@@ -1,5 +1,5 @@
 .Bar-main {
-  background-color: rgb(37, 37, 37);
+  background-color: #282828;
   color: white;
   padding-top: 35px;
   padding-bottom: 35px;
@@ -13,17 +13,19 @@
 }
 
 .Setting {
-  color: #00c4a3;
+  color: #ea00ff;
+  margin-bottom: 10px;
 }
 
 .UserDp,
 .UserName {
   text-align: center;
-  color: #00c4a3;
+  color: #ea00ff;
 }
 
 .UserDp:hover,
 .Setting:hover {
   cursor: pointer;
   transform: scale(1.5);
+  
 }

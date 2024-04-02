@@ -7,7 +7,7 @@
   padding: 10px;
   border: 1px solid #ffffff;
   border-radius: 50%;
-  background-color: #3cc1ab;
+  background-color: #ea00ff;
   display: flex;
   width: 50px;
   height: 50px;
@@ -16,7 +16,7 @@
 }
 
 .add-button:hover {
-  color: #3cc1ab;
+  color: #ea00ff;
   background-color: #000000;
 }
 
@@ -39,7 +39,7 @@
   border-radius: 15px;
   height: 50px;
   line-height: normal;
-  color: #3cc1ab;
+  color: #ea00ff;
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -50,17 +50,17 @@
 }
 
 .popup-content input::placeholder {
-  color: #3cc1ab;
+  color: #ea00ff;
 }
 
 .popup-content input:focus {
-  border: 3px solid #3cc1ab;
+  border: 3px solid #ea00ff;
 }
 
 .popup-content button {
   padding: 5px 10px;
   border: none;
-  background-color: #3cc1ab;
+  background-color: #ea00ff;
   color: white;
   font-size: 14px;
   cursor: pointer;

@@ -18,6 +18,18 @@ function App() {
   const [prevmsg, setPM] = useState([]); //Previous msg []
   const [prevcr, setPC] = useState([]); //Previous chatroom []
 
+  const setChatrooms = useCallback(
+    (newChatroom) => {
+      const CA = [newChatroom, ...prevcr];
+      dispatch({
+        type: actionTypes.SET_CHATROOMS,
+        chatrooms: CA,
+      });
+      setPC(CA);
+    },
+    [dispatch, prevcr]
+  );
+
   //when message pusher is called
   const setMessages = useCallback(
     (newMessage) => {
@@ -35,19 +47,6 @@ function App() {
       setPM([...prevmsg, newMessage]);
     },
     [dispatch, prevmsg, prevcr]
-  );
-
-  const setChatrooms = useCallback(
-    (newChatroom) => {
-      const newCA = [newChatroom, ...prevcr];
-      const sortedCA = newCA.sort((a, b) => b.recentmsg - a.recentmsg);
-      dispatch({
-        type: actionTypes.SET_CHATROOMS,
-        chatrooms: sortedCA,
-      });
-      setPC(sortedCA);
-    },
-    [dispatch, prevcr]
   );
 
   //LOGIN
@@ -96,12 +95,19 @@ function App() {
     const channel = pusher.subscribe("message");
     channel.bind("inserted", (newMessage) => {
       setMessages(newMessage);
+      instance.get("/api/v1/chatrooms/sync").then((response) => {
+        setPC(response.data);
+        dispatch({
+          type: actionTypes.SET_CHATROOMS,
+          chatrooms: response.data,
+        });
+      });
     });
     return () => {
       channel.unbind_all();
       channel.unsubscribe();
     };
-  }, [setMessages]);
+  }, [setMessages, setChatrooms, dispatch]);
 
   useEffect(() => {
     const pusher = new Pusher("9a5aa5234d0a14d2e800", {

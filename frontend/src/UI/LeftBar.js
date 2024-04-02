@@ -1,6 +1,5 @@
 import React from "react";
 import "./LeftBar.css";
-import { useEffect, useState } from "react";
 import { auth } from "../Auth/firebase";
 import { useStateValue } from "../StateProvider";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -8,7 +7,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 function Leftbar() {
-  const [{ user, selectedChatroom }, dispatch] = useStateValue();
+  const [{ user }] = useStateValue();
 
   const logout = () => {
     try {

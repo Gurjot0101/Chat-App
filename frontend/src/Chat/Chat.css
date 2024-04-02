@@ -2,18 +2,20 @@
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
-  color: rgb(0, 0, 0);
+  color: #ea00ff;
   border-radius: 30px;
   flex: 0.6;
-  max-width: 60%;
-  min-width: 60%;
+  max-width: 70%;
+  min-width: 70%;
 }
 
 .chat__header {
+  height: 5vh;
   padding: 20px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgb(212, 212, 212);
+  background-color: #282828;
 }
 
 .chat__headerInfo {
@@ -28,7 +30,7 @@
 }
 
 .chat__headerInfo > p {
-  color: rgb(103, 95, 95);
+  color: #b400c5;
   font-size: small;
 }
 
@@ -39,6 +41,7 @@
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  background-color: #282828;
 }
 
 .chat > aside.emoji-picker-react {
@@ -102,32 +105,43 @@
   max-width: 90%;
   word-wrap: break-word;
   word-break: break-all;
-  background-color: #01cfac;
+  background-color: #ea00ff;
   box-shadow: 1px 5px 8px 1px rgba(77, 77, 77, 0.313);
   color: white;
 }
 
 .chat__footer {
-  padding: 1%;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 10%;
-  border-top: 1px solid lightgray;
+  height: 5vh;
+  border-top: 1px solid rgb(211, 211, 211);
+  background-color: #282828;
 }
 
 .chat__footer > form {
   flex: 1;
   display: flex;
-}
-
-.chat__footer > form > input {
-  background-color: rgb(221, 221, 221);
+  border: 3px solid #ea00ff;
+  
+  background-color: #282828;
   flex: 1;
   border-radius: 30px;
   padding: 10px;
+  margin: 10px;
+}
+
+.chat__footer > form > input {
+  background-color: #282828;
   border: none;
   outline-width: 0;
+  color: #ea00ff;
+  width: 80%;
+}
+
+.chat__footer > form > input::placeholder {
+  color: #ea00ff;
 }
 
 .chat__footer > form > button {
@@ -136,5 +150,44 @@
 
 .chat__footer > .MuiSvgIcon-root {
   padding: 10px;
-  color: gray;
+  color: #ea00ff;
+}
+
+.chat__search {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.chat__searchContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1px;
+  margin: 5px;
+  border: 3px solid #ea00ff;
+  border-radius: 20px;
+}
+
+.chat__searchContainer > .MuiSvgIcon-root {
+  border-radius: 30px;
+  color: #ea00ff;
+  padding: 10px;
+}
+
+.chat__searchContainer > .MuiSvgIcon-root:hover {
+  cursor: pointer;
+}
+
+.chat__searchContainer > input {
+  color: #ea00ff;
+  background-color: #282828;
+  border: none;
+  margin-right: 5px;
+  outline-width: 0;
+  width: 100%;
+}
+
+.chat__searchContainer > input::placeholder {
+  color: #ea00ff;
 }
